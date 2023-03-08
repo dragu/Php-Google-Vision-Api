@@ -5,7 +5,7 @@ namespace Vision\Annotation;
 class Word
 {
     /**
-     * @var TextProperty
+     * @var TextProperty|null
      */
     protected $property;
 
@@ -20,11 +20,11 @@ class Word
     protected $symbols = [];
 
     /**
-     * @param TextProperty $property
+     * @param TextProperty|null $property
      * @param BoundingPoly $boundingBox
      * @param Symbol[] $symbols
      */
-    public function __construct(TextProperty $property, BoundingPoly $boundingBox, array $symbols)
+    public function __construct(?TextProperty $property, BoundingPoly $boundingBox, array $symbols)
     {
         $this->property = $property;
         $this->boundingBox = $boundingBox;
