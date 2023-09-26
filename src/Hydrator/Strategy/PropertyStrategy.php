@@ -3,7 +3,7 @@
 namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\Property;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class PropertyStrategy implements StrategyInterface
 {
@@ -11,7 +11,7 @@ class PropertyStrategy implements StrategyInterface
      * @param Property[] $value
      * @return array
      */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         return array_map(function(Property $property) {
             return [
@@ -25,7 +25,7 @@ class PropertyStrategy implements StrategyInterface
      * @param array $value
      * @return Property[]
      */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         $properties = [];
 

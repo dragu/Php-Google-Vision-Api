@@ -2,15 +2,16 @@
 
 namespace Vision\Tests\Hydrator\Strategy;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Annotation\DetectedBreak;
 use Vision\Hydrator\Strategy\DetectedBreakStrategy;
 
-class DetectedBreakStrategyTest extends \PHPUnit_Framework_TestCase
+class DetectedBreakStrategyTest extends TestCase
 {
     public function testHydratesArray()
     {
         $strategy = new DetectedBreakStrategy();
-        $object = $strategy->hydrate($this->getArray());
+        $object = $strategy->hydrate($this->getArray(), null);
 
         $this->assertEquals($this->getObject(), $object);
     }

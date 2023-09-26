@@ -2,15 +2,16 @@
 
 namespace Vision\Tests\Hydrator\Strategy;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Annotation\DetectedLanguage;
 use Vision\Hydrator\Strategy\DetectedLanguagesStrategy;
 
-class DetectedLanguagesStrategyTest extends \PHPUnit_Framework_TestCase
+class DetectedLanguagesStrategyTest extends TestCase
 {
     public function testHydratesArray()
     {
         $strategy = new DetectedLanguagesStrategy();
-        $object = $strategy->hydrate($this->getArray());
+        $object = $strategy->hydrate($this->getArray(), null);
 
         $this->assertEquals($this->getObjects(), $object);
     }

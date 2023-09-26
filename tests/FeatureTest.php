@@ -2,15 +2,15 @@
 
 namespace Vision\Tests\Hydrator\Strategy;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Feature;
 
-class FeatureTest extends \PHPUnit_Framework_TestCase
+class FeatureTest extends TestCase
 {
-    /**
-     * @expectedException \Vision\Exception\UnknownFeatureException
-     */
     public function testShouldDisallowUnknownFeature()
     {
+        $this->expectException(\Vision\Exception\UnknownFeatureException::class);
+
         new Feature('Unknown feature', 12);
     }
 }

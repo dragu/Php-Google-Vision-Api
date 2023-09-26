@@ -4,7 +4,7 @@ namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\Property;
 use Vision\Annotation\WebPage;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class WebPagesStrategy implements StrategyInterface
 {
@@ -12,7 +12,7 @@ class WebPagesStrategy implements StrategyInterface
      * @param WebPage[] $value
      * @return array
      */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         return array_map(function(WebPage $webPage) {
             return array_filter([
@@ -26,7 +26,7 @@ class WebPagesStrategy implements StrategyInterface
      * @param array $value
      * @return WebPage[]
      */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         $webPages = [];
 

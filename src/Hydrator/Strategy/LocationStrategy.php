@@ -4,7 +4,7 @@ namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\LatLng;
 use Vision\Annotation\Location;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class LocationStrategy implements StrategyInterface
 {
@@ -12,7 +12,7 @@ class LocationStrategy implements StrategyInterface
      * @param Location[] $value
      * @return array
      */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         return array_map(function(Location $location) {
             return [
@@ -28,7 +28,7 @@ class LocationStrategy implements StrategyInterface
      * @param array $value
      * @return Location[]
      */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         $locations = [];
 

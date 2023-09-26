@@ -2,16 +2,16 @@
 
 namespace Vision\Tests\Request\Image;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Request\Image\Base64Image;
 
-class Base64ImageTest extends \PHPUnit_Framework_TestCase
+class Base64ImageTest extends TestCase
 {
-    /**
-     * @expectedException \Vision\Exception\ImageException
-     * @expectedExceptionMessage The given image is not in a valid Base64 string
-     */
     public function testExceptionOnInvalidEncoding()
     {
+        $this->expectException(\Vision\Exception\ImageException::class);
+        $this->expectExceptionMessage('The given image is not in a valid Base64 string');
+
         $image = new Base64Image();
         $image->setValue('IR&^FKUI^&');
     }
@@ -20,6 +20,8 @@ class Base64ImageTest extends \PHPUnit_Framework_TestCase
     {
         $image = new Base64Image();
         $image->setValue($this->getTestImageBase());
+
+        $this->expectNotToPerformAssertions();
     }
 
     /**

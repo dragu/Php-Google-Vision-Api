@@ -2,16 +2,17 @@
 
 namespace Vision\Tests\Hydrator\Strategy;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Annotation\Color;
 use Vision\Annotation\DominantColor;
 use Vision\Hydrator\Strategy\DominantColorsStrategy;
 
-class DominantColorsStrategyTest extends \PHPUnit_Framework_TestCase
+class DominantColorsStrategyTest extends TestCase
 {
     public function testHydratesArray()
     {
         $strategy = new DominantColorsStrategy();
-        $objects = $strategy->hydrate($this->getArray());
+        $objects = $strategy->hydrate($this->getArray(), null);
 
         $this->assertEquals($this->getObjects(), $objects);
     }

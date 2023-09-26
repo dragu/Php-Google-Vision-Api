@@ -3,7 +3,7 @@
 namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\DetectedLanguage;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class DetectedLanguagesStrategy implements StrategyInterface
 {
@@ -11,7 +11,7 @@ class DetectedLanguagesStrategy implements StrategyInterface
      * @param DetectedLanguage[] $value
      * @return array
      */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         return array_map(function(DetectedLanguage $detectedLanguage) {
             return array_filter([
@@ -25,7 +25,7 @@ class DetectedLanguagesStrategy implements StrategyInterface
      * @param array $value
      * @return DetectedLanguage[]
      */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         $detectedLanguageEntities = [];
 

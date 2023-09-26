@@ -3,7 +3,7 @@
 namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\DetectedBreak;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class DetectedBreakStrategy implements StrategyInterface
 {
@@ -11,7 +11,7 @@ class DetectedBreakStrategy implements StrategyInterface
      * @param DetectedBreak $value
      * @return array
      */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         return array_filter([
             'type' => $value->getType(),
@@ -23,7 +23,7 @@ class DetectedBreakStrategy implements StrategyInterface
      * @param array $value
      * @return DetectedBreak
      */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         return new DetectedBreak($value['type'], isset($value['isPrefix']) ? $value['isPrefix'] : false);
     }

@@ -2,15 +2,16 @@
 
 namespace Vision\Tests\Hydrator\Strategy;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Annotation\WebPage;
 use Vision\Hydrator\Strategy\WebPagesStrategy;
 
-class WebPagesStrategyTest extends \PHPUnit_Framework_TestCase
+class WebPagesStrategyTest extends TestCase
 {
     public function testHydratesArray()
     {
         $strategy = new WebPagesStrategy();
-        $object = $strategy->hydrate($this->getArray());
+        $object = $strategy->hydrate($this->getArray(), null);
 
         $this->assertEquals($this->getObjects(), $object);
     }

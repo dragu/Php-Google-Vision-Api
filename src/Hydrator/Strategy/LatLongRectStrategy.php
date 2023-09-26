@@ -4,7 +4,7 @@ namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\LatLng;
 use Vision\Annotation\LatLongRect;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class LatLongRectStrategy implements StrategyInterface
 {
@@ -12,7 +12,7 @@ class LatLongRectStrategy implements StrategyInterface
      * @param LatLongRect $value
      * @return array|null
      */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         if (!$value) {
             return null;
@@ -37,7 +37,7 @@ class LatLongRectStrategy implements StrategyInterface
      * @param array $value
      * @return LatLongRect|null
      */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         $minLatLng = $this->getIfExists($value, 'minLatLng');
         $maxLatLng = $this->getIfExists($value, 'maxLatLng');

@@ -2,6 +2,7 @@
 
 namespace Vision\Tests\Hydrator\Strategy;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Annotation\BoundingPoly;
 use Vision\Annotation\EntityAnnotation;
 use Vision\Annotation\SafeSearchAnnotation;
@@ -9,7 +10,7 @@ use Vision\Annotation\Vertex;
 use Vision\Hydrator\AnnotateImageHydrator;
 use Vision\Response\AnnotateImageResponse;
 
-class AnnotateImageHydratorTest extends \PHPUnit_Framework_TestCase
+class AnnotateImageHydratorTest extends TestCase
 {
     public function testHydratesArray()
     {

@@ -3,7 +3,7 @@
 namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\Block;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class BlocksStrategy implements StrategyInterface
 {
@@ -33,7 +33,7 @@ class BlocksStrategy implements StrategyInterface
      * @param Block[] $value
      * @return array
      */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         return array_map(function(Block $blockEntity) {
             return array_filter([
@@ -49,15 +49,15 @@ class BlocksStrategy implements StrategyInterface
      * @param array $value
      * @return Block[]
      */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         $blockEntities = [];
 
         foreach ($value as $blockEntityInfo) {
             $blockEntities[] = new Block(
-                isset($blockEntityInfo['property']) ? $this->textPropertyStrategy->hydrate($blockEntityInfo['property']) : null,
-                isset($blockEntityInfo['boundingBox']) ? $this->boundingPolyStrategy->hydrate($blockEntityInfo['boundingBox']) : null,
-                isset($blockEntityInfo['paragraphs']) ? $this->paragraphsStrategy->hydrate($blockEntityInfo['paragraphs']) : [],
+                isset($blockEntityInfo['property']) ? $this->textPropertyStrategy->hydrate($blockEntityInfo['property'], null) : null,
+                isset($blockEntityInfo['boundingBox']) ? $this->boundingPolyStrategy->hydrate($blockEntityInfo['boundingBox'], null) : null,
+                isset($blockEntityInfo['paragraphs']) ? $this->paragraphsStrategy->hydrate($blockEntityInfo['paragraphs'], null) : [],
                 isset($blockEntityInfo['blockType']) ? $blockEntityInfo['blockType'] : Block::TYPE_UNKNOWN
             );
         }

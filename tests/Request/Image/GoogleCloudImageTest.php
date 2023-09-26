@@ -2,9 +2,10 @@
 
 namespace Vision\Tests\Request\Image;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Request\Image\GoogleCloudImage;
 
-class GoogleCloudImageTest extends \PHPUnit_Framework_TestCase
+class GoogleCloudImageTest extends TestCase
 {
     public function testGSPrefixIsStripped()
     {

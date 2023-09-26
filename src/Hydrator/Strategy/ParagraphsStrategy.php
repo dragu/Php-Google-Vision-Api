@@ -3,7 +3,7 @@
 namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\Paragraph;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class ParagraphsStrategy implements StrategyInterface
 {
@@ -33,7 +33,7 @@ class ParagraphsStrategy implements StrategyInterface
      * @param Paragraph[] $value
      * @return array
      */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         return array_map(function(Paragraph $paragraphEntity) {
             $textProperty = $paragraphEntity->getProperty()
@@ -61,20 +61,20 @@ class ParagraphsStrategy implements StrategyInterface
      * @param array $value
      * @return Paragraph[]
      */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         $paragraphEntities = [];
         foreach ($value as $paragraphEntityInfo) {
             $textProperty = isset($paragraphEntityInfo['property'])
-                ? $this->textPropertyStrategy->hydrate($paragraphEntityInfo['property'])
+                ? $this->textPropertyStrategy->hydrate($paragraphEntityInfo['property'], null)
                 : null;
 
             $boundingBox = isset($paragraphEntityInfo['boundingBox'])
-                ? $this->boundingPolyStrategy->hydrate($paragraphEntityInfo['boundingBox'])
+                ? $this->boundingPolyStrategy->hydrate($paragraphEntityInfo['boundingBox'], null)
                 : null;
 
             $words = isset($paragraphEntityInfo['words'])
-                ? $this->wordsStrategy->hydrate($paragraphEntityInfo['words'])
+                ? $this->wordsStrategy->hydrate($paragraphEntityInfo['words'], null)
                 : null;
 
             $paragraphEntities[] = new Paragraph($textProperty, $boundingBox, $words);

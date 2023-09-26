@@ -2,17 +2,18 @@
 
 namespace Vision\Tests\Hydrator\Strategy;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Annotation\CropHintsParams;
 use Vision\Annotation\WebDetectionParams;
 use Vision\Hydrator\Strategy\CropHintsParamsStrategy;
 use Vision\Hydrator\Strategy\WebDetectionParamsStrategy;
 
-class WebDetectionParamsStrategyTest extends \PHPUnit_Framework_TestCase
+class WebDetectionParamsStrategyTest extends TestCase
 {
     public function testHydratesArray()
     {
         $strategy = new WebDetectionParamsStrategy();
-        $object = $strategy->hydrate($this->getArray());
+        $object = $strategy->hydrate($this->getArray(), null);
 
         $this->assertEquals($this->getObjects(), $object);
     }

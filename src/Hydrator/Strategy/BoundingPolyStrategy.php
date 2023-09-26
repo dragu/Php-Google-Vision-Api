@@ -4,15 +4,11 @@ namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\BoundingPoly;
 use Vision\Annotation\Vertex;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class BoundingPolyStrategy implements StrategyInterface
 {
-    /**
-     * @param BoundingPoly $value
-     * @return array
-     */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         $verticles = $value ? $value->getVertices() : [];
         $verticleMap = array_map(function(Vertex $vertex) {
@@ -27,17 +23,13 @@ class BoundingPolyStrategy implements StrategyInterface
         ];
     }
 
-    /**
-     * @param array $value
-     * @return BoundingPoly
-     */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         $boundingPoly = new BoundingPoly;
         foreach ($value['vertices'] as $vertex) {
             $x = isset($vertex['x']) ? $vertex['x'] : null;
             $y = isset($vertex['y']) ? $vertex['y'] : null;
-            
+
             $boundingPoly->addVertex(new Vertex($x, $y));
         }
 

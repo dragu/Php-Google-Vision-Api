@@ -2,15 +2,16 @@
 
 namespace Vision\Tests\Hydrator\Strategy;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Annotation\CropHintsParams;
 use Vision\Hydrator\Strategy\CropHintsParamsStrategy;
 
-class CropHintsParamsStrategyTest extends \PHPUnit_Framework_TestCase
+class CropHintsParamsStrategyTest extends TestCase
 {
     public function testHydratesArray()
     {
         $strategy = new CropHintsParamsStrategy();
-        $object = $strategy->hydrate($this->getArray());
+        $object = $strategy->hydrate($this->getArray(), null);
 
         $this->assertEquals($this->getObjects(), $object);
     }

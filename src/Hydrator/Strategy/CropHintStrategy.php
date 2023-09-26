@@ -3,7 +3,7 @@
 namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\CropHint;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class CropHintStrategy implements StrategyInterface
 {
@@ -21,7 +21,7 @@ class CropHintStrategy implements StrategyInterface
      * @param CropHint[] $value
      * @return array
      */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         return array_map(function(CropHint $cropHint) {
             return array_filter([
@@ -36,13 +36,13 @@ class CropHintStrategy implements StrategyInterface
      * @param array $value
      * @return CropHint[]
      */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         $cropHints = [];
 
         foreach ($value as $cropHintInfo) {
             $cropHints[] = new CropHint(
-                $this->boundingPolyStrategy->hydrate($cropHintInfo['boundingPoly']),
+                $this->boundingPolyStrategy->hydrate($cropHintInfo['boundingPoly'], null),
                 isset($cropHintInfo['confidence']) ? $cropHintInfo['confidence'] : null,
                 isset($cropHintInfo['importanceFraction']) ? $cropHintInfo['importanceFraction'] : null
             );

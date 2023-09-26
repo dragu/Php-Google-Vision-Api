@@ -2,16 +2,17 @@
 
 namespace Vision\Tests\Hydrator\Strategy;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Annotation\Landmark;
 use Vision\Annotation\Position;
 use Vision\Hydrator\Strategy\LandmarkStrategy;
 
-class LandmarkStrategyTest extends \PHPUnit_Framework_TestCase
+class LandmarkStrategyTest extends TestCase
 {
     public function testHydratesArray()
     {
         $strategy = new LandmarkStrategy();
-        $objects = $strategy->hydrate($this->getArray());
+        $objects = $strategy->hydrate($this->getArray(), null);
 
         $this->assertEquals($this->getObjects(), $objects);
     }

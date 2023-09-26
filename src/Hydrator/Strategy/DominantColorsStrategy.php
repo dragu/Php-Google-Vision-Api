@@ -4,7 +4,7 @@ namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\Color;
 use Vision\Annotation\DominantColor;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class DominantColorsStrategy implements StrategyInterface
 {
@@ -12,7 +12,7 @@ class DominantColorsStrategy implements StrategyInterface
      * @param DominantColor[] $value
      * @return array
      */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         $colorMap = array_map(function(DominantColor $dominantColor) {
             return [
@@ -33,7 +33,7 @@ class DominantColorsStrategy implements StrategyInterface
      * @param array $value
      * @return DominantColor[]
      */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         $dominantColors = [];
 

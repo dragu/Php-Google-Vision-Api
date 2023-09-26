@@ -5,6 +5,7 @@ namespace Vision\Tests\Hydrator\Strategy;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 use Vision\Annotation\CropHintsParams;
 use Vision\Annotation\ImageContext;
 use Vision\Annotation\LatLng;
@@ -14,7 +15,7 @@ use Vision\Request\Image\Base64Image;
 use Vision\Request\VisionRequest;
 use Vision\Response\AnnotateImageResponse;
 
-class VisionRequestTest extends \PHPUnit_Framework_TestCase
+class VisionRequestTest extends TestCase
 {
     /**
      * @var Image
@@ -26,7 +27,7 @@ class VisionRequestTest extends \PHPUnit_Framework_TestCase
      */
     protected $features = [];
 
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

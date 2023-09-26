@@ -3,7 +3,7 @@
 namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\Page;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class PagesStrategy implements StrategyInterface
 {
@@ -27,7 +27,7 @@ class PagesStrategy implements StrategyInterface
      * @param Page[] $value
      * @return array
      */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         return array_map(function(Page $page) {
             return array_filter([
@@ -43,16 +43,16 @@ class PagesStrategy implements StrategyInterface
      * @param array $value
      * @return Page[]
      */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         $pageEntities = [];
 
         foreach ($value as $pageEntityInfo) {
             $pageEntities[] = new Page(
-                $this->textPropertyStrategy->hydrate($pageEntityInfo['property']),
+                $this->textPropertyStrategy->hydrate($pageEntityInfo['property'], null),
                 $pageEntityInfo['width'],
                 $pageEntityInfo['height'],
-                $this->blocksStrategy->hydrate($pageEntityInfo['blocks'])
+                $this->blocksStrategy->hydrate($pageEntityInfo['blocks'], null)
             );
         }
 

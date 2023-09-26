@@ -2,9 +2,10 @@
 
 namespace Vision\Tests\Vision\Request\Image;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Request\Image\BinaryImage;
 
-class BinaryImageTest extends \PHPUnit_Framework_TestCase
+class BinaryImageTest extends TestCase
 {
     public function testBinaryIsEncoded()
     {

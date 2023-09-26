@@ -2,16 +2,17 @@
 
 namespace Vision\Tests\Hydrator\Strategy;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Annotation\LatLng;
 use Vision\Annotation\LatLongRect;
 use Vision\Hydrator\Strategy\LatLongRectStrategy;
 
-class LatLongRectStrategyTest extends \PHPUnit_Framework_TestCase
+class LatLongRectStrategyTest extends TestCase
 {
     public function testHydratesArray()
     {
         $strategy = new LatLongRectStrategy();
-        $object = $strategy->hydrate($this->getArray());
+        $object = $strategy->hydrate($this->getArray(), null);
 
         $this->assertEquals($this->getObjects(), $object);
     }

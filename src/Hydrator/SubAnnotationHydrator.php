@@ -2,8 +2,8 @@
 
 namespace Vision\Hydrator;
 
-use Zend\Hydrator\AbstractHydrator;
-use Zend\Hydrator\HydratorInterface;
+use Laminas\Hydrator\AbstractHydrator;
+use Laminas\Hydrator\HydratorInterface;
 
 class SubAnnotationHydrator extends AbstractHydrator implements HydratorInterface
 {
@@ -13,7 +13,7 @@ class SubAnnotationHydrator extends AbstractHydrator implements HydratorInterfac
      * @param  object $object
      * @return array
      */
-    public function extract($object)
+    public function extract(object $object): array
     {
         $hydrator = new AnnotationHydrator();
         return $hydrator->extract($object);

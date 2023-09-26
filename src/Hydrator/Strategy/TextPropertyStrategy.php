@@ -3,7 +3,7 @@
 namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\TextProperty;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class TextPropertyStrategy implements StrategyInterface
 {
@@ -28,7 +28,7 @@ class TextPropertyStrategy implements StrategyInterface
      * @param TextProperty $value
      * @return array
      */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         return array_filter([
             'detectedLanguages' => $this->detectedLanguagesStrategy->extract($value->getDetectedLanguages()),
@@ -41,11 +41,11 @@ class TextPropertyStrategy implements StrategyInterface
      * @param array $value
      * @return TextProperty
      */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         return new TextProperty(
-            isset($value['detectedLanguages']) ? $this->detectedLanguagesStrategy->hydrate($value['detectedLanguages']) : [],
-            isset($value['detectedBreak']) ? $this->detectedBreakStrategy->hydrate($value['detectedBreak']) : null
+            isset($value['detectedLanguages']) ? $this->detectedLanguagesStrategy->hydrate($value['detectedLanguages'], null) : [],
+            isset($value['detectedBreak']) ? $this->detectedBreakStrategy->hydrate($value['detectedBreak'], null) : null
         );
     }
 }

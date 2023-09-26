@@ -2,16 +2,16 @@
 
 namespace Vision\Tests\Request\Image;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Request\Image\LocalImage;
 
-class LocalImageTest extends \PHPUnit_Framework_TestCase
+class LocalImageTest extends TestCase
 {
-    /**
-     * @expectedException \Vision\Exception\ImageException
-     * @expectedExceptionMessage Could not load the given image
-     */
     public function testExceptionOnInvalidImage()
     {
+        $this->expectException(\Vision\Exception\ImageException::class);
+        $this->expectExceptionMessage('Could not load the given image');
+
         new LocalImage('path/to/notfound');
     }
 

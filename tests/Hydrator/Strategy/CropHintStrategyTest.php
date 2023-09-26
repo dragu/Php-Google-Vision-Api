@@ -2,17 +2,18 @@
 
 namespace Vision\Tests\Hydrator\Strategy;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Annotation\BoundingPoly;
 use Vision\Annotation\CropHint;
 use Vision\Annotation\Vertex;
 use Vision\Hydrator\Strategy\CropHintStrategy;
 
-class CropHintStrategyTest extends \PHPUnit_Framework_TestCase
+class CropHintStrategyTest extends TestCase
 {
     public function testHydratesArray()
     {
         $strategy = new CropHintStrategy();
-        $objects = $strategy->hydrate($this->getArray());
+        $objects = $strategy->hydrate($this->getArray(), null);
 
         $this->assertEquals($this->getObjects(), $objects);
     }

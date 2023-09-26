@@ -10,8 +10,8 @@ use Vision\Annotation\ImagePropertiesAnnotation;
 use Vision\Annotation\SafeSearchAnnotation;
 use Vision\Annotation\TextAnnotation;
 use Vision\Annotation\WebDetection;
-use Zend\Hydrator\Exception\LogicException;
-use Zend\Hydrator\HydratorInterface;
+use Laminas\Hydrator\Exception\LogicException;
+use Laminas\Hydrator\HydratorInterface;
 
 class AnnotateImageHydrator implements HydratorInterface
 {
@@ -58,7 +58,7 @@ class AnnotateImageHydrator implements HydratorInterface
      * @param object $object
      * @return array
      */
-    public function extract($object)
+    public function extract(object $object): array
     {
         $array = [];
         $class = new \ReflectionClass($object);

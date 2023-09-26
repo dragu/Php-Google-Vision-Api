@@ -4,7 +4,7 @@ namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\Paragraph;
 use Vision\Annotation\Word;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class WordsStrategy implements StrategyInterface
 {
@@ -34,7 +34,7 @@ class WordsStrategy implements StrategyInterface
      * @param Word[] $value
      * @return array
      */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         return array_map(function(Word $wordEntity) {
              $textProperty = $wordEntity->getProperty()
@@ -61,21 +61,21 @@ class WordsStrategy implements StrategyInterface
      * @param array $value
      * @return Word[]
      */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         $wordEntities = [];
 
         foreach ($value as $wordEntityInfo) {
             $textProperty = isset($wordEntityInfo['property'])
-                ? $this->textPropertyStrategy->hydrate($wordEntityInfo['property'])
+                ? $this->textPropertyStrategy->hydrate($wordEntityInfo['property'], null)
                 : null;
             
             $boundingBox = isset($wordEntityInfo['boundingBox'])
-                 ? $this->boundingPolyStrategy->hydrate($wordEntityInfo['boundingBox'])
+                 ? $this->boundingPolyStrategy->hydrate($wordEntityInfo['boundingBox'], null)
                  : null;
             
             $symbols = isset($wordEntityInfo['symbols'])
-                 ? $this->symbolsStrategy->hydrate($wordEntityInfo['symbols'])
+                 ? $this->symbolsStrategy->hydrate($wordEntityInfo['symbols'], null)
                  : null;
             
             $wordEntities[] = new Word(

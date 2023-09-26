@@ -3,7 +3,7 @@
 namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\Symbol;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class SymbolsStrategy implements StrategyInterface
 {
@@ -27,7 +27,7 @@ class SymbolsStrategy implements StrategyInterface
      * @param Symbol[] $value
      * @return array
      */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         return array_map(function(Symbol $symbolEntity) {
             $textProperty = $symbolEntity->getProperty()
@@ -50,17 +50,17 @@ class SymbolsStrategy implements StrategyInterface
      * @param array $value
      * @return Symbol[]
      */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         $symbolEntities = [];
 
         foreach ($value as $symbolEntityInfo) {
             $textProperty = isset($symbolEntityInfo['property'])
-                ? $this->textPropertyStrategy->hydrate($symbolEntityInfo['property'])
+                ? $this->textPropertyStrategy->hydrate($symbolEntityInfo['property'], null)
                 : null;
 
             $boundingBox = isset($symbolEntityInfo['boundingBox'])
-                ? $this->boundingPolyStrategy->hydrate($symbolEntityInfo['boundingBox'])
+                ? $this->boundingPolyStrategy->hydrate($symbolEntityInfo['boundingBox'], null)
                 : null;
 
             $symbolEntities[] = new Symbol(

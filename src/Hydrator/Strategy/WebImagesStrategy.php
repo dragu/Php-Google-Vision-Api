@@ -3,7 +3,7 @@
 namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\WebImage;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class WebImagesStrategy implements StrategyInterface
 {
@@ -11,7 +11,7 @@ class WebImagesStrategy implements StrategyInterface
      * @param WebImage[] $value
      * @return array
      */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         return array_map(function(WebImage $webImage) {
             return array_filter([
@@ -25,7 +25,7 @@ class WebImagesStrategy implements StrategyInterface
      * @param array $value
      * @return WebImage[]
      */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         $webImages = [];
 

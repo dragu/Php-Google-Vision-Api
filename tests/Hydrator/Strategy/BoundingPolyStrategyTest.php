@@ -2,16 +2,17 @@
 
 namespace Vision\Tests\Hydrator\Strategy;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Annotation\BoundingPoly;
 use Vision\Annotation\Vertex;
 use Vision\Hydrator\Strategy\BoundingPolyStrategy;
 
-class BoundingPolyStrategyTest extends \PHPUnit_Framework_TestCase
+class BoundingPolyStrategyTest extends TestCase
 {
     public function testHydratesArray()
     {
         $strategy = new BoundingPolyStrategy();
-        $object = $strategy->hydrate($this->getArray());
+        $object = $strategy->hydrate($this->getArray(), null);
 
         $this->assertEquals($this->getObject(), $object);
     }

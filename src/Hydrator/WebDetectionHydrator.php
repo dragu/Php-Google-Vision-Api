@@ -2,7 +2,7 @@
 
 namespace Vision\Hydrator;
 
-use Zend\Hydrator\ClassMethods;
+use Laminas\Hydrator\ClassMethods;
 
 class WebDetectionHydrator extends ClassMethods
 {

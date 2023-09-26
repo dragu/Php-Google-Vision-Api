@@ -2,15 +2,16 @@
 
 namespace Vision\Tests\Hydrator\Strategy;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Annotation\Property;
 use Vision\Hydrator\Strategy\PropertyStrategy;
 
-class PropertyStrategyTest extends \PHPUnit_Framework_TestCase
+class PropertyStrategyTest extends TestCase
 {
     public function testHydratesArray()
     {
         $strategy = new PropertyStrategy();
-        $objects = $strategy->hydrate($this->getArray());
+        $objects = $strategy->hydrate($this->getArray(), null);
 
         $this->assertEquals($this->getObjects(), $objects);
     }

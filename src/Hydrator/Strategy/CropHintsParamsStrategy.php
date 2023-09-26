@@ -3,7 +3,7 @@
 namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\CropHintsParams;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class CropHintsParamsStrategy implements StrategyInterface
 {
@@ -11,7 +11,7 @@ class CropHintsParamsStrategy implements StrategyInterface
      * @param CropHintsParams $value
      * @return array|null
      */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         return $value ? ['aspectRatios' => $value->getAspectRatios()] : null;
     }
@@ -20,7 +20,7 @@ class CropHintsParamsStrategy implements StrategyInterface
      * @param array $value
      * @return CropHintsParams|null
      */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         return $value ? new CropHintsParams($value['aspectRatios']) : null;
     }

@@ -4,7 +4,7 @@ namespace Vision\Hydrator\Strategy;
 
 use Vision\Annotation\Landmark;
 use Vision\Annotation\Position;
-use Zend\Hydrator\Strategy\StrategyInterface;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 class LandmarkStrategy implements StrategyInterface
 {
@@ -12,7 +12,7 @@ class LandmarkStrategy implements StrategyInterface
      * @param Landmark[] $value
      * @return array
      */
-    public function extract($value)
+    public function extract($value, ?object $object = null)
     {
         return array_map(function(Landmark $landmark) {
             return [
@@ -30,7 +30,7 @@ class LandmarkStrategy implements StrategyInterface
      * @param array $value
      * @return Landmark[]
      */
-    public function hydrate($value)
+    public function hydrate($value, ?array $data)
     {
         $landmarks = [];
 

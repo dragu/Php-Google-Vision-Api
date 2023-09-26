@@ -2,9 +2,10 @@
 
 namespace Vision\Tests\Request\Image;
 
+use PHPUnit\Framework\TestCase;
 use Vision\Request\Image\RemoteImage;
 
-class RemoteImageTest extends \PHPUnit_Framework_TestCase
+class RemoteImageTest extends TestCase
 {
     public function testValueIsArray()
     {
