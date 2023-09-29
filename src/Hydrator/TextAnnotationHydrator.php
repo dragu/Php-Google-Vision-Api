@@ -2,9 +2,9 @@
 
 namespace Vision\Hydrator;
 
-use Laminas\Hydrator\ClassMethods;
+use Laminas\Hydrator\ClassMethodsHydrator;
 
-class TextAnnotationHydrator extends ClassMethods
+class TextAnnotationHydrator extends ClassMethodsHydrator
 {
     public function __construct()
     {

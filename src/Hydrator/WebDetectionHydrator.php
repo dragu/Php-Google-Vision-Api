@@ -2,9 +2,9 @@
 
 namespace Vision\Hydrator;
 
-use Laminas\Hydrator\ClassMethods;
+use Laminas\Hydrator\ClassMethodsHydrator;
 
-class WebDetectionHydrator extends ClassMethods
+class WebDetectionHydrator extends ClassMethodsHydrator
 {
     public function __construct()
     {
