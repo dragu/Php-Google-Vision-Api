@@ -13,7 +13,7 @@
     "require": {
         "php": ">=7.1",
         "guzzlehttp/guzzle": "~7.1",
-        "laminas/laminas-hydrator": "~4.13.0"
+        "laminas/laminas-hydrator": "~4.13"
     },
     "require-dev": {
         "phpunit/phpunit": "^10.3"
