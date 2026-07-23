@@ -53,9 +53,9 @@ class Vision
     public function __construct(
         $apiKey,
         array $features = [],
-        ImageContext $imageContext = null,
+        ?ImageContext $imageContext = null,
         $version = VisionRequest::VISION_VERSION,
-        Client $httpClient = null
+        ?Client $httpClient = null
     ) {
         $this->apiKey = $apiKey;
         $this->version = $version;

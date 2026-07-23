@@ -32,14 +32,14 @@ class Block
     protected $blockType = self::TYPE_UNKNOWN;
 
     /**
-     * @param TextProperty $property
-     * @param BoundingPoly $boundingBox
+     * @param TextProperty|null $property
+     * @param BoundingPoly|null $boundingBox
      * @param Paragraph[] $paragraphs
      * @param string $blockType
      */
     public function __construct(
-        TextProperty $property = null,
-        BoundingPoly $boundingBox = null,
+        ?TextProperty $property = null,
+        ?BoundingPoly $boundingBox = null,
         array $paragraphs = [],
         $blockType = self::TYPE_UNKNOWN
     ) {

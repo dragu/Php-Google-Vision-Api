@@ -55,9 +55,9 @@ class VisionRequest
      * @param string $apiKey
      * @param ImageInterface $image
      * @param Feature[] $features
-     * @param ImageContext $imageContext
+     * @param ImageContext|null $imageContext
      */
-    public function __construct($apiKey, ImageInterface $image, array $features, ImageContext $imageContext = null)
+    public function __construct($apiKey, ImageInterface $image, array $features, ?ImageContext $imageContext = null)
     {
         $this->apiKey = $apiKey;
         $this->features = $features;
@@ -68,7 +68,7 @@ class VisionRequest
     /**
      * @param Client|null $client
      */
-    public function send(Client $client = null)
+    public function send(?Client $client = null)
     {
         $client = $client ?: new Client;
 

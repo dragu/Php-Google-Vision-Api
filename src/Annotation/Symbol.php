@@ -24,7 +24,7 @@ class Symbol
      * @param BoundingPoly|null $boundingBox
      * @param string $text
      */
-    public function __construct(TextProperty $property = null, BoundingPoly $boundingBox = null, $text = null)
+    public function __construct(?TextProperty $property = null, ?BoundingPoly $boundingBox = null, $text = null)
     {
         $this->property = $property;
         $this->boundingBox = $boundingBox;
