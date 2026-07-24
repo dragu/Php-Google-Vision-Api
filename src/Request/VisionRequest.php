@@ -88,7 +88,7 @@ class VisionRequest
     }
 
     /**
-     * @return AnnotateImageResponse
+     * @return AnnotateImageResponse|null
      */
     public function getAnnotateImageResponse()
     {
@@ -97,7 +97,11 @@ class VisionRequest
         }
 
         $content = json_decode($this->rawResponse, true);
-        return $this->getResponseFromArray($content['responses'][0]);
+        $response = is_array($content) && isset($content['responses'][0])
+            ? $content['responses'][0]
+            : null;
+
+        return $this->getResponseFromArray($response);
     }
 
     /**
@@ -178,21 +182,25 @@ class VisionRequest
     }
 
     /**
-     * @param array $response
-     * @return AnnotateImageResponse|object
+     * @param array|null $response
+     * @return AnnotateImageResponse|object|null
      */
-    protected function getResponseFromArray(array $response)
+    protected function getResponseFromArray(?array $response)
     {
+        if ($response === null) {
+            return null;
+        }
+
         return (new AnnotateImageHydrator)->hydrate($response, new AnnotateImageResponse);
     }
 
     /**
      * @param ClientException $exception
-     * @return AnnotateImageResponse
+     * @return AnnotateImageResponse|null
      */
     protected function getResponseFromException(ClientException $exception)
     {
         $response = json_decode($exception->getResponse()->getBody()->getContents(), true);
-        return $this->getResponseFromArray($response);
+        return $this->getResponseFromArray(is_array($response) ? $response : null);
     }
 }

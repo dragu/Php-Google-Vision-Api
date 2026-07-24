@@ -70,6 +70,56 @@ class VisionRequestTest extends TestCase
         $this->assertEquals($request->getAnnotateImageResponse()->getError()->getCode(), 'test');
     }
 
+    public function testReturnsNullForClientExceptionWithoutJsonResponse()
+    {
+        $request = $this->getVisionRequest();
+
+        $class = new \ReflectionClass($request);
+        $property = $class->getProperty('clientException');
+        $property->setAccessible(true);
+        $property->setValue(
+            $request,
+            new ClientException(
+                'exception message',
+                new Request('GET', '/'),
+                new Response(400, [], '')
+            )
+        );
+
+        $this->assertNull($request->getAnnotateImageResponse());
+    }
+
+    public function testReturnsNullForClientExceptionWithScalarJsonResponse()
+    {
+        $request = $this->getVisionRequest();
+
+        $class = new \ReflectionClass($request);
+        $property = $class->getProperty('clientException');
+        $property->setAccessible(true);
+        $property->setValue(
+            $request,
+            new ClientException(
+                'exception message',
+                new Request('GET', '/'),
+                new Response(400, [], '"error"')
+            )
+        );
+
+        $this->assertNull($request->getAnnotateImageResponse());
+    }
+
+    public function testReturnsNullForInvalidRawResponse()
+    {
+        $request = $this->getVisionRequest();
+
+        $class = new \ReflectionClass($request);
+        $property = $class->getProperty('rawResponse');
+        $property->setAccessible(true);
+        $property->setValue($request, '');
+
+        $this->assertNull($request->getAnnotateImageResponse());
+    }
+
     public function testReturnsAnnotateImageResponse()
     {
         $request = $this->getVisionRequest();
